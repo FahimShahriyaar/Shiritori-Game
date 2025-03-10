@@ -10,17 +10,19 @@ function App() {
   const [ActivePlayer, setActivePlayer] = useState(null)
   const [CurrentWord, setCurrentWord] = useState('')
   const [isRunning, setIsRunning] = useState([false,'Play']);
+  const [Logs, setLogs] = useState({1:null,2:null});
+  const winPlayer=useState(null)
 
   function NextWord(val){
     setCurrentWord(val)
   }
 
-  function PlayerLogs(val){
-    
+  function PlayerLogs(id,val){
+    setLogs(prev=>({...prev,[id]:val}))
   }
 
   function winner(val){
-    console.log('winner is: Player '+val)
+    winPlayer[1](val)
     setIsRunning([false,'Play Again'])
     setActivePlayer(null)
   }
@@ -54,8 +56,8 @@ function App() {
     <header className='text-white text-4xl bg-gray-950 p-4'>Shiritori Game</header>
     <main className={`relative ${isRunning[1]=='Play Again' && 'blur-xs'}`}>
       <div className='mt-10 flex justify-center gap-10'>
-        <GamePanel NextWord={NextWord} CurrentWord={CurrentWord} setActivePlayer={setActivePlayer} ActivePlayer={ActivePlayer} pid='1' winner={winner}/>
-        <GamePanel NextWord={NextWord} CurrentWord={CurrentWord} setActivePlayer={setActivePlayer} ActivePlayer={ActivePlayer} pid='2' winner={winner}/>
+        <GamePanel PlayerLogs={PlayerLogs} NextWord={NextWord} CurrentWord={CurrentWord} setActivePlayer={setActivePlayer} ActivePlayer={ActivePlayer} pid='1' winner={winner}/>
+        <GamePanel PlayerLogs={PlayerLogs} NextWord={NextWord} CurrentWord={CurrentWord} setActivePlayer={setActivePlayer} ActivePlayer={ActivePlayer} pid='2' winner={winner}/>
       </div>
       <div className='mt-10 flex justify-center gap-4'>
         <button onClick={play} className='text-white text-2xl bg-green-800 py-1 px-6 cursor-pointer'>{isRunning[1]}</button>
@@ -63,7 +65,7 @@ function App() {
 
       
     </main>
-    {isRunning[1]=='Play Again' && <ResultModal click={play}/>}
+    {isRunning[1]=='Play Again' && <ResultModal winPlayer={winPlayer[0]} Logs={Logs} click={play}/>}
     </>
   )
 }

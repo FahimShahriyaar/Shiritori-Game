@@ -37,7 +37,6 @@ body{
 .logbox li{
   color: white;
   font-size: 20px;
-  background-color: purple;
   margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
@@ -51,6 +50,13 @@ body{
 
   img{ 
     height: 25px;
+  }
+
+  &.correct{
+    background-color: green;
+  }
+  &.incorrect{
+    background-color: red;
   }
 }
 
@@ -69,50 +75,47 @@ body{
   color:white;
   font-size: 30px;
   visibility: hidden;
-  top: 16%;
-  left: 14%;
+  top:58px;
+  left:60px;
 }
 
 .scale-in-center {
-	-webkit-animation: scale-in-center 1s ease-out forwards;
-	        animation: scale-in-center 2s ease-out forwards;
+	animation: scale-in-center 1.5s ease-out forwards;
 }
 
 @keyframes scale-in-center {
   0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    opacity: 0;
     visibility: visible;
+    scale: 0;
+    opacity: 0;
   }
   20% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    scale: 1;
     opacity: 1;
   }
-  60% {
-    -webkit-transform: scale(1);
-            transform: translateX(0%) scale(1) ;
+  40% {
+    scale: 1 ;
     opacity: 1;
+    translate: 0;
   }
   100% {
-    -webkit-transform: scale(0);
-            transform: translateX(-100%) scale(0) ;
+    translate: -100%;
     opacity: 0;
   }
 }
 
 
 .winner{
-  color: white;
   text-align: center;
   h1{
     font-size: 40px;
     font-weight: 700;
+    color:aquamarine
   }
   h2{
     font-size: 20px;
     font-weight: 700;
+    color: chocolate;
   }
 }
 
@@ -124,7 +127,6 @@ body{
   font-weight: 600;
 
   div{
-    background: green;
     padding: 10px 20px;
     width: 200px;
     border-radius: 20px;
