@@ -8,13 +8,13 @@ function ResultModal(props) {
             <h2>---------- Player {props.winPlayer} ----------</h2>
             </div>
             <div className="players">
-                <div className="player1 bg-green-600">
+                <div className={`player1 ${props.winPlayer==1?'bg-green-600': 'bg-red-600'}`}>
                     <p className='text-center'>Player 1</p>
                     <pre>Score    : {props.Logs[1].score}</pre>
                     <pre>Correct  : {props.Logs[1].correct}</pre>
                     <pre>Incorrect: {props.Logs[1].incorrect}</pre>
                 </div>
-                <div className="player2 bg-red-600">
+                <div className={`player2 ${props.winPlayer==2?'bg-green-600':'bg-red-600'}`}>
                     <p className='text-center'>Player 2</p>
                     <pre>Score    : {props.Logs[2].score}</pre>
                     <pre>Correct  : {props.Logs[2].correct}</pre>

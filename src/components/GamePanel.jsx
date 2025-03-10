@@ -9,6 +9,7 @@ function GamePanel(props) {
   const inputBox = useRef()
   const loader = useRef()
   const msg = useRef()
+  const listBox = useRef()
 
   const [Player, setPlayer] = useState({ score: 0, correct:0, incorrect:0, logs: [] })
   const [Timer, setTimer] = useState(null)
@@ -53,9 +54,19 @@ function GamePanel(props) {
     }
   }, [props.ActivePlayer])
 
+  useEffect(() => {
+      listBox.current.scrollTo({ top: listBox.current.scrollHeight, behavior: "smooth" });
+  }, [result]); 
+
   function checkWord(event) {
     msg.current.classList.remove('scale-in-center')
     if (event.key == 'Enter') {
+      if(fullword.length<4){
+        playSound(incorrectSound)
+        panel.current.classList.add('shake-horizontal')
+        setTimeout(()=>panel.current.classList.remove('shake-horizontal'),500)
+        return
+      }
       fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + fullword)
         .then(res => {         
           if (res.ok && !stack.includes(fullword)) {
@@ -72,7 +83,7 @@ function GamePanel(props) {
               return prev
             });
             
-            if(score>=10){
+            if(score>=100){
               props.winner(props.pid)
               clearInterval(interval)
               loader.current.classList.remove('animate')
@@ -123,7 +134,7 @@ function GamePanel(props) {
       <div className='msgbox' ref={msg}>
         {result[0]?'+':'-'}{result[1].length}
       </div>
-      <div className='logbox w-full overflow-auto h-45'>
+      <div className='logbox w-full overflow-auto h-45' ref={listBox}>
         <ul>
           {Player.logs.map((v, i) => <li key={i} className={v.status?'correct':'incorrect'}>{v.word}{v.status == 0 && <img src="/cross.png" alt="cross_icon" />}</li>)}
         </ul>
