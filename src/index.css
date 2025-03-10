@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+
+body{
+  background-color: slategray;
+}
+
+:focus{
+  outline: none;
+}
+
+.active{
+  box-shadow: rgb(0, 0, 0) 0px 54px 55px, rgb(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.loader{
+  position: absolute;
+  background-image: linear-gradient(#151617, green, #151617);
+  width: 100%;
+  height: 100%;
+
+
+}
+
+.animate{
+  animation-name: reduce;
+  animation-timing-function: linear;
+  animation-duration: 10s;
+}
+
+
+@keyframes reduce {
+  from {transform: translateX(0); background-color: rgb(1, 85, 1);}
+  to {transform: translateX(100%); background-color: rgb(255, 0, 0)}
+}
+
+.logbox li{
+  color: white;
+  font-size: 20px;
+  background-color: purple;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+
+
+  &:last-child{
+    margin-bottom: 0;
+  }
+
+  img{ 
+    height: 25px;
+  }
+}
+
+
+
+
+
+.shake-horizontal{-webkit-animation:shake-horizontal .8s linear both;animation:shake-horizontal .8s linear both}
+@-webkit-keyframes shake-horizontal{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}10%,30%,50%,70%{-webkit-transform:translateX(-10px);transform:translateX(-10px)}20%,40%,60%{-webkit-transform:translateX(10px);transform:translateX(10px)}80%{-webkit-transform:translateX(8px);transform:translateX(8px)}90%{-webkit-transform:translateX(-8px);transform:translateX(-8px)}}@keyframes shake-horizontal{0%,100%{-webkit-transform:translateX(0);transform:translateX(0)}10%,30%,50%,70%{-webkit-transform:translateX(-10px);transform:translateX(-10px)}20%,40%,60%{-webkit-transform:translateX(10px);transform:translateX(10px)}80%{-webkit-transform:translateX(8px);transform:translateX(8px)}90%{-webkit-transform:translateX(-8px);transform:translateX(-8px)}}
+
+.blink-2{-webkit-animation:blink-2 .9s both;animation:blink-2 .9s both}
+@-webkit-keyframes blink-2{0%{opacity:1}50%{opacity:.2}100%{opacity:1}}@keyframes blink-2{0%{opacity:1}50%{opacity:.2}100%{opacity:1}}
+
+.msgbox{
+  position: absolute;
+  color:white;
+  font-size: 30px;
+  visibility: hidden;
+  top: 16%;
+  left: 14%;
+}
+
+.scale-in-center {
+	-webkit-animation: scale-in-center 1s ease-out forwards;
+	        animation: scale-in-center 2s ease-out forwards;
+}
+
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0;
+    visibility: visible;
+  }
+  20% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  60% {
+    -webkit-transform: scale(1);
+            transform: translateX(0%) scale(1) ;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: translateX(-100%) scale(0) ;
+    opacity: 0;
+  }
+}
+
+
+.winner{
+  color: white;
+  text-align: center;
+  h1{
+    font-size: 40px;
+    font-weight: 700;
+  }
+  h2{
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
+.players{
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+
+  div{
+    background: green;
+    padding: 10px 20px;
+    width: 200px;
+    border-radius: 20px;
+  }
+}
