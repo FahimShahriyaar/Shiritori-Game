@@ -61,6 +61,7 @@ function GamePanel(props) {
   function checkWord(event) {
     msg.current.classList.remove('scale-in-center')
     if (event.key == 'Enter') {
+      // fullword.
       if(fullword.length<4){
         playSound(incorrectSound)
         panel.current.classList.add('shake-horizontal')
@@ -130,7 +131,7 @@ function GamePanel(props) {
         <p className='text-white text-4xl font-semibold z-1'>{Timer}</p>
         <div className="loader" ref={loader}></div>
       </div>
-      <input disabled={props.ActivePlayer != props.pid} type="text" value={props.ActivePlayer==props.pid ? fullword: ''} onChange={(e) => setInputVal(e.target.value.slice(1))} className='bg-white w-full h-10 px-2 font-semibold text-2xl' onKeyDown={checkWord} ref={inputBox} />
+      <input disabled={props.ActivePlayer != props.pid} type="text" value={props.ActivePlayer==props.pid ? fullword: ''} onChange={(e) => setInputVal(e.target.value.slice(1).trim())} className='bg-white w-full h-10 px-2 font-semibold text-2xl' onKeyDown={checkWord} ref={inputBox} />
       <div className='msgbox' ref={msg}>
         {result[0]?'+':'-'}{result[1].length}
       </div>
